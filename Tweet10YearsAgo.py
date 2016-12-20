@@ -16,7 +16,6 @@ execfile("TweetConfig.py", config)
 
 # Twitter API authentication
 api = twitter.Api(consumer_key=config['consumer_key'], consumer_secret=config['consumer_secret'], access_token_key=config['access_key'], access_token_secret=config['access_secret'])
-#print(api.VerifyCredentials())
 
 # Tweet expense when correct time
 def tweetExpense():
@@ -26,7 +25,8 @@ def tweetExpense():
     then_date = then.date().strftime("%Y-%m-%d")
     then_time = then.time().strftime("%H:%M")
     # Open data file
-    with open('data.csv', 'r') as csvfile:
+    filename = "data/" + then.date().strftime("%Y-%m") + "-data.csv"
+    with open(filename, 'r') as csvfile:
         spamreader = csv.DictReader(csvfile)
         # csv rows loop
         for row in spamreader:
