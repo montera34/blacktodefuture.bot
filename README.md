@@ -16,7 +16,8 @@ To run the bot on system start and restart it automatically if it crashes, this 
 You must edit this file and set up the correct user and paths and save it as `blactodefuture.daemon`. Make sure that `Tweet10YearsAgo.py` has execution rights for that user.
 
 Then copy the file to /etc/systemd/system, enable the daemon and start it:
-
-   `sudo systemctl enable MusicBot.service
-    sudo systemctl daemon-reload
-    sudo systemctl start blacktodefuture.service`
+```
+sudo systemctl enable MusicBot.service
+sudo systemctl daemon-reload
+sudo systemctl start blacktodefuture.service
+```
