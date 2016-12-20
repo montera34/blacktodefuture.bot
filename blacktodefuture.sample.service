@@ -1,0 +1,16 @@
+***BlackToDeFuture.service***
+[Unit]
+Description=Black To The Future project daemon
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/path/to/the/script/Tweet10YearsAgo.py
+User=username
+WorkingDirectory=/path/to/the/blacktodefuture/folder
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
