@@ -17,7 +17,7 @@ You must edit this file and set up the correct user and paths and save it as `bl
 
 Then copy the file to /etc/systemd/system, enable the daemon and start it:
 ```
-sudo systemctl enable MusicBot.service
+sudo systemctl enable blacktodefuture.service
 sudo systemctl daemon-reload
 sudo systemctl start blacktodefuture.service
 ```
