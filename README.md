@@ -10,6 +10,12 @@ You can find a file with all the expenses from 2003 to 2012 in `data/data.csv`.
 ## Configure the Twitter bot
 Write your Twitter keys and tokens in `TweetConfig.sample.py` file and save it as `TweetConfig.py`.
 
+## Python script dependences
+The bot uses some python modules that need to be installed:
+```
+pip install python-twitter schedule python-dateutil
+```
+
 ## Daemonize the python script
 To run the bot on system start and restart it automatically if it crashes, this repo includes a unit file to config a systemd daemon: `blactodefuture.sample.daemon`.
 
