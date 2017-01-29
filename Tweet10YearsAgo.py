@@ -32,15 +32,28 @@ def tweetExpense():
         for row in spamreader:
             hora = row['hora'][:-3]
             if then_date == row['date'] and then_time == hora:
-                comercio = row['comercio']
-                importe = row['importe']
-                quien = row['quien']    
-                status_text = 'Hace 10 años ' + quien + ' gastaba ' + importe + '€ con su tarjeta black en ' + comercio
-                #print (len(status_text))
-                
-                status = api.PostUpdate(status_text)
-                #print(status.text)
-                #print(status_text)
+								#Checks if 'comercio' is empty ('NA' value)
+								if row['comercio'] == 'NA':
+								    if row['operacion'] == 'REINTEGRO EN CAJERO PROPIO':
+								        comercio = 'un cajero'
+								    else:
+								         comercio = row['actividad'] #if comercio is not specified use the field "actividad"
+								else:
+								    comercio = row['comercio']
+								importe = row['importe']
+								quien = row['quien']
+
+								#Checks if is estracting money from the machine or spending in comerce to slect one verb or another
+								if row['operacion'] == 'DISPOSICION EFECTIVO OFICINA' or row['operacion'] == 'REINTEGRO EN CAJERO PROPIO' or row['operacion'] == 'REINTEGRO EN CAJERO AJENO NACIONAL':
+								    verbo == ' sacaba '
+								else:
+								    verbo == ' gastaba '
+
+								status_text = 'Hace 10 años ' + quien + verbo + importe + '€ con su tarjeta black en ' + comercio
+								#print (len(status_text))
+
+								status = api.PostUpdate(status_text)
+								#print(status_text)
 
 # Schedule tweetExpense every minute
 schedule.every(1).minutes.do(tweetExpense)
